@@ -34,7 +34,13 @@ public class SpartansTest {
 
     }
 
-
+@Test
+    @DisplayName("delete some spartan")
+    public void deleteSpartan(){
+    given().contentType(ContentType.JSON).
+            auth().basic("admin","admin").
+            baseUri(base_URL).delete("/api/spartans/{id}",907).prettyPeek().then().statusCode(204);
+}
 
 
 
