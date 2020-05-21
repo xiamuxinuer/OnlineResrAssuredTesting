@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.*;
 
@@ -34,10 +35,10 @@ public class ORDSTest {
 
 @Test
     public void test1(){
-    given().
-            pathParam("id", 1).
-            when().
-            get("/regions/{id}").prettyPeek().
+//    given().
+//            pathParam("id", 1).
+//            when().
+            get("/regions/{id}",1).prettyPeek().
             then().assertThat().
             statusCode(200).
             body("region_name", is("Europe")).
@@ -56,8 +57,12 @@ public class ORDSTest {
     Map<String,Object> firstEmployee= jsonPath.get("items[0]");
     System.out.println(firstEmployee);
 
-
 }
+
+
+
+
+
 
 
 }
