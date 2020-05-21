@@ -11,8 +11,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ORDSTestsDay4 {
     @BeforeAll
@@ -96,14 +96,55 @@ public class ORDSTestsDay4 {
 
 
 
+/**
+ * given path parameter is “/employees”
+ * when user makes get request
+ * then assert that status code is 200
+ * Then user verifies that every employee has positive salary
+ *
+ */
+
+@Test
+    public void verifySalary(){
+    get("/employees").then().assertThat().
+            statusCode(200).body("items.salary",everyItem(greaterThan(0))).log().ifError();
+}
+
+/**
+ * given path parameter is “/employees/{id}”
+ * and path parameter is 101
+ * when user makes get request
+ * then assert that status code is 200
+ * and verifies that phone number is 515-123-4568
+ *
+ */
+
+@Test
+    public void verifyPhoneNumber(){
+
+    get("/employees/{id}","101").prettyPeek().
+            then().assertThat().statusCode(200).and().
+    body("phone_number",is("515.123.4568")).log().ifError();
+
+    //or:
+//    given().
+//            pathParam("id",101).
+//            when().get("/employees/{id}").
+//            then().assertThat().
+//            statusCode(200).
+//            body("phone_number", is("515.123.4568"));
 
 
 
-
-
-
-
-
-
+    Response response = when().get("/employees/{id}", 101).prettyPeek();
+    response.then().assertThat().statusCode(200);
+    String expected = "515-123-4568";
+    String actual = response.jsonPath().getString("phone_number").replace(".", "-");
+    assertEquals(200, response.statusCode());
+    assertEquals(expected, actual);
 
 }
+}
+
+
+
