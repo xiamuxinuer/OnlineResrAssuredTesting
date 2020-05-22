@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.*;
 
 public class SpartansTest {
 
-    String base_URL="http://3.90.112.152:8000";
+    String base_URL="http://54.224.118.38:8000";
 
     @Test
     @DisplayName("get list of all spartans")
@@ -41,6 +41,15 @@ public class SpartansTest {
             auth().basic("admin","admin").
             baseUri(base_URL).delete("/api/spartans/{id}",907).prettyPeek().then().statusCode(204);
 }
+
+
+
+
+
+
+
+
+
 
 
 
