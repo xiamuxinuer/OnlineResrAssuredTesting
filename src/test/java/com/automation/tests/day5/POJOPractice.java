@@ -2,10 +2,11 @@ package com.automation.tests.day5;
 
 import com.automation.pojos.Spartan;
 import com.google.gson.Gson;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import com.automation.utilities.ConfigurationReader;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -31,9 +32,9 @@ public class POJOPractice {
 
     @Test
     public void getUser(){
-        Response response=given().auth().basic("admin","admin").
+      Response response=given().auth().basic("admin","admin").
                 when().get("/spartans/{id}",393).prettyPeek();
-
+// get response: deserialization
      Spartan spartan=response.as(Spartan.class);
         System.out.println(spartan);
         System.out.println(" user name :"+ spartan.getName());
@@ -52,7 +53,7 @@ public class POJOPractice {
     public void addUser(){
         Spartan spartan=new Spartan("emma","Female",5155156666l);
 
-//add a user:
+//add a user:serialization
         Response response=given().auth().basic("admin","admin").
                 contentType(ContentType.JSON).body(spartan).when().post("/spartans").prettyPeek();
 
