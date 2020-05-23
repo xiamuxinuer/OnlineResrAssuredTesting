@@ -59,6 +59,9 @@ private  long   phone;
         this.phone = phone;
     }
 
+    public int getId() {
+        return id;
+    }
 
     @Override
     public String toString() {
