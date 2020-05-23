@@ -34,6 +34,7 @@ public class POJOPractice_ORDS {
 
        List<Map<String,String>> links =response.jsonPath().get("links");
        System.out.println(links);
+       System.out.println(links.get(0).get("rel"));
 
 //       List<Link> links=employee.getLinks();
 //       System.out.println(links);
