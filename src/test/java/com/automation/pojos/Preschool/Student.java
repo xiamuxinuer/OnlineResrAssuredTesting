@@ -15,8 +15,8 @@ public class Student {
     private String admissionNo;
     private String major;
     private String section;
-    private List<Contact> contact;
-    private List<Company> company;
+    private Contact contact;
+    private Company company;
 
 
     public int getStudentId() {
@@ -113,19 +113,19 @@ public class Student {
         this.section = section;
     }
 
-    public List<Contact> getContact() {
+    public Contact getContact() {
         return contact;
     }
 
-    public void setContact(List<Contact> contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
     }
 
-    public List<Company> getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(List<Company> company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
