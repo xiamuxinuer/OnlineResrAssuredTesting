@@ -29,29 +29,26 @@ public class POJOPractice_Preschool {
     public void getStudentTest(){
         Response response = get("/student/{id}", 11671).prettyPeek();
 
+        Student student=response.jsonPath().getObject("students[0]",Student.class);
+        System.out.println(student);
+        System.out.println(student.getCompany().getAddress().getCity());
+
+
+
+
 //           String student= response.jsonPath().getString("students");
 //          System.out.println(student);
 //
 //          Map<String,Object> studentMap=response.as(Map.class);
 //        System.out.println(studentMap);
 
-       String studentName=response.jsonPath().getString("students.studentId");
-        System.out.println("studentId is : "+studentName);
-
-        String studentContact=response.jsonPath().getString("students.contact");
-        System.out.println("student contact information: "+studentContact);
-        String  email=response.jsonPath().getString("students.contact.emailAddress");
-        System.out.println("student email address is : "+email);
-
-
-
-        Student student=response.jsonPath().getObject("students[0]",Student.class);
-        System.out.println(student.getCompany().getAddress().getCity());
-
-
-
-
-
+//       String studentName=response.jsonPath().getString("students.studentId");
+//        System.out.println("studentId is : "+studentName);
+//
+//        String studentContact=response.jsonPath().getString("students.contact");
+//        System.out.println("student contact information: "+studentContact);
+//        String  email=response.jsonPath().getString("students.contact.emailAddress");
+//        System.out.println("student email address is : "+email);
 
     }
 
