@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.*;
 
 public class SpartansTest {
 
-    String base_URL="http://54.224.118.38:8000";
+    String base_URL="http://54.152.21.73:8000";
 
     @Test
     @DisplayName("get list of all spartans")

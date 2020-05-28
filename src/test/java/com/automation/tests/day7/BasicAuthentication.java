@@ -3,9 +3,11 @@ package com.automation.tests.day7;
 import com.automation.pojos.Spartan;
 import com.automation.utilities.ConfigurationReader;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 public class BasicAuthentication {
@@ -15,8 +17,8 @@ public class BasicAuthentication {
     public void spartanAuthentication(){
  baseURI= ConfigurationReader.getProperty("SPARTAN.URI");
     given().auth().basic("admin","admin").when()
-            .get("/spartans").prettyPeek()
-             .then().assertThat().statusCode(200);
+            .get("/spartans").prettyPeek();
+
 }
 
 @Test
@@ -35,7 +37,7 @@ public class BasicAuthentication {
     public void authenticationTest(){
     baseURI= ConfigurationReader.getProperty("SPARTAN.URI");
 
-    get("/spartans").prettyPeek().then().assertThat().statusCode(401);
+    given().get("/spartans").prettyPeek().then().statusCode(401);
 }
 
 

@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.*;
 
 public class ORDSTest {
 
-String base_URL="http://3.90.112.152:1000/ords/hr";
+String base_URL="http://54.152.21.73:1000/ords/hr";
 
 @Test
 @DisplayName("get list of all employees")
@@ -19,6 +19,7 @@ Response response= given().baseUri(base_URL).when().get("/employees").prettyPeek
 
 
 }
+// it was just fine last night
 
 
 

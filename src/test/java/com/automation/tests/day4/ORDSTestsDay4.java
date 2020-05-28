@@ -82,7 +82,7 @@ public class ORDSTestsDay4 {
 
     @Test
     public void getEmployeeTest() {
-        Response response = when().get("/employees");
+        Response response = when().get("/employees").prettyPeek();
         //collectionName.max{it.propertyName}
         Map<String, ?> bestEmployee = response.jsonPath().get("items.max{it.salary}");
         Map<String, ?> poorGuy = response.jsonPath().get("items.min{it.salary}");
