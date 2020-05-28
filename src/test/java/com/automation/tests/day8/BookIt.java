@@ -13,7 +13,7 @@ public class BookIt{
 
     @BeforeAll
     public static void setUp(){
-        baseURI ="https://cybertek-reservation-api-qa.herokuapp.com";
+        baseURI =ConfigurationReader.getProperty("Bookit.URI");
     }
 
    @Test
