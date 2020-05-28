@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
-public class BookIt{
+public class Bookit_BearerToken {
 
     @BeforeAll
     public static void setUp(){
