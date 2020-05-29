@@ -143,13 +143,14 @@ Request includes :•Header Accept with value application/json
                 and().contentType("application/json; charset=utf-8");
         List<String> idList = response.jsonPath().getList("_id");
         List<Object> dumbledoresArmy_List=response.jsonPath().getList("dumbledoresArmy");
-        List<Object> houseList=response.jsonPath().getList("house");
+        List<String> houseList=response.jsonPath().getList("house");
         System.out.println(houseList);
 
         for (int i = 0; i <idList.size(); i++) {
             Assertions.assertFalse(idList.get(i).isEmpty());
             Assertions.assertTrue(dumbledoresArmy_List.get(i).equals(true)||dumbledoresArmy_List.get(i).equals(false));
         }
+        Assertions.assertTrue(houseList.containsAll(expected));
     }
 
  /*
