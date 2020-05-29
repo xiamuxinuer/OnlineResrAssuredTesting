@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static io.restassured.RestAssured.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
@@ -201,6 +199,7 @@ Request includes :•Path param org with value cucumber
             //      System.out.println(nameList.get(i).charAt(0)+"----"+ nameList.get(i+1).charAt(0) );
         }
 
+
     }
 
 /*
@@ -216,18 +215,21 @@ Request includes :•Path param org with value cucumber
     public void test8() {
         Response response = given().queryParam("org", "cucumber")
                 .when().get("/orgs/:org/repos");
-        List<String> create_at=response.jsonPath().getList("created_at");
-        for (int i = 0; i <create_at.size(); i++) {
-            //System.out.println(create_at.get(i));
-            System.out.println( create_at.get(i).substring(0,10));
-
+        List<String> dates = response.jsonPath().getList("created_at");
+        boolean check = false;
+        for (int i = 0; i <dates.size()-1 ; i++) {
+            int diff = dates.get(i).compareTo(dates.get(i+1));
+            if (diff < 0) {
+                check = true;
+                break;
+            }
         }
-
+        Assertions.assertTrue(check);
+    }
 
     }
 
 
-}
 
 
 
