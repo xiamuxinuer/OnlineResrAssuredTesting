@@ -42,7 +42,7 @@ public class SchemaValidation {
 
     File schema=new File("spartan_schema.json");
     given().auth().basic("admin","admin").when()
-            .get("/spartans/{id}",121).prettyPeek()
+            .get("/spartans/{id}",35).prettyPeek()
            .then().body(JsonSchemaValidator.matchesJsonSchema(schema));
 
 }
