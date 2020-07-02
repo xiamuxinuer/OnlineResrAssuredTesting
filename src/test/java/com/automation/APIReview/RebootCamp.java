@@ -41,8 +41,7 @@ public class RebootCamp {
                 .statusCode(201)
                 .body("success",is("A Spartan is Born!"))
                 .body("data.name",is("Bootcamp user") )
-                .body("data.gender",equalTo("Male"))
-        ;
+                .body("data.gender",equalTo("Male"));
     }
     @Test
     public void add1SpartanTest2(){
