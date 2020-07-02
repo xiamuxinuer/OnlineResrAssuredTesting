@@ -1,22 +1,28 @@
 package com.automation.tests.day2;
 
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.List;
 
 import static io.restassured.RestAssured.*;
 
 public class SpartansTest {
 
-    String base_URL="http://54.152.21.73:8000";
+    String base_URL="http://52.205.194.10:8000";
 
     @Test
     @DisplayName("get list of all spartans")
     public void getAllSpartans(){
-        given().auth().basic("admin","admin").
-                baseUri(base_URL).when().get("/api/spartans").prettyPeek().then().statusCode(200);
+        Response response= given().auth().basic("admin","admin").
+                baseUri(base_URL).when().get("/api/spartans").prettyPeek();
+        response.then().assertThat().statusCode(200);
+
+        List<Integer>  idList=response.jsonPath().getList("id");
+        //  System.out.println(idList);
 
     }
 
